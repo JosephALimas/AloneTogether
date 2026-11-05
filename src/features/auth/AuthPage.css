@@ -1,6 +1,35 @@
 .auth-page {
+  position: relative;
   min-height: 100vh;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image:
+    url('../../../graphics/Loney abraza un círculo amarillo.png'),
+    radial-gradient(
+      circle 92px at 7% 19%,
+      rgba(196, 222, 232, 0.7) 99%,
+      transparent 100%
+    ),
+    radial-gradient(
+      circle 60px at 91% 12%,
+      rgba(246, 229, 174, 0.72) 99%,
+      transparent 100%
+    ),
+    radial-gradient(
+      circle 118px at 87% 86%,
+      rgba(207, 226, 207, 0.58) 99%,
+      transparent 100%
+    );
+  background-repeat: no-repeat;
+  background-size:
+    clamp(330px, 39vw, 560px) auto,
+    auto,
+    auto,
+    auto;
+  background-position:
+    right 4vw top 48px,
+    0 0,
+    0 0,
+    0 0;
   padding: 24px clamp(16px, 4vw, 48px) 48px;
 }
 .auth-layout {
@@ -8,33 +37,21 @@
   margin: clamp(22px, 5vh, 58px) auto 0;
   text-align: center;
 }
+@media (min-width: 768px) {
+  .auth-layout {
+    margin-left: clamp(210px, 21vw, 360px);
+    margin-right: auto;
+  }
+}
 .auth-brand {
-  font-family: var(--font-brand);
-  font-weight: 600;
-  font-size: clamp(38px, 7vw, 52px);
-  line-height: 1.1;
-  color: var(--primary);
-  margin-bottom: 28px;
+  display: block;
+  width: min(100%, 300px);
+  height: auto;
+  margin: 0 auto 24px;
 }
 .auth-card {
   position: relative;
-  overflow: hidden;
   text-align: left;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: clamp(26px, 5vw, 42px);
-  box-shadow: 0 18px 52px rgba(41, 60, 64, 0.055);
-}
-.auth-accent {
-  position: absolute;
-  width: 116px;
-  height: 116px;
-  right: -56px;
-  top: -65px;
-  border-radius: 50%;
-  background: var(--blue);
-  box-shadow: -38px 16px 0 -10px var(--yellow);
 }
 .auth-eyebrow {
   font-size: 12px;
@@ -184,13 +201,103 @@
   color: var(--muted);
   margin: 24px 0 0;
 }
+.auth-sidekick {
+  position: absolute;
+  left: 0;
+  bottom: 16px;
+  width: clamp(200px, 20vw, 340px);
+  height: auto;
+  pointer-events: none;
+}
+@keyframes auth-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.auth-brand,
+.auth-eyebrow,
+.auth-card h1,
+.auth-intro,
+.auth-form .auth-field,
+.auth-feedback,
+.auth-submit,
+.auth-footer,
+.auth-note,
+.auth-sidekick {
+  animation: auth-fade-up 300ms ease-out backwards;
+}
+.auth-eyebrow {
+  animation-delay: 40ms;
+}
+.auth-card h1 {
+  animation-delay: 80ms;
+}
+.auth-intro {
+  animation-delay: 120ms;
+}
+.auth-form .auth-field {
+  animation-delay: 160ms;
+}
+.auth-form .auth-field:nth-of-type(2) {
+  animation-delay: 200ms;
+}
+.auth-form .auth-field:nth-of-type(3) {
+  animation-delay: 240ms;
+}
+.auth-feedback {
+  animation-delay: 240ms;
+}
+.auth-submit {
+  animation-delay: 280ms;
+}
+.auth-footer {
+  animation-delay: 320ms;
+}
+.auth-note {
+  animation-delay: 360ms;
+}
+.auth-sidekick {
+  animation-delay: 400ms;
+}
 .auth-page :is(a, button):focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 3px;
 }
+@media (max-width: 999px) {
+  .auth-page {
+    background-size:
+      clamp(190px, 32vw, 250px) auto,
+      auto,
+      auto,
+      auto;
+    background-position:
+      right -20px top 135px,
+      0 0,
+      0 0,
+      0 0;
+  }
+}
+@media (max-width: 767px) {
+  .auth-sidekick {
+    position: static;
+    display: block;
+    width: clamp(250px, 45vw, 320px);
+    margin-top: 24px;
+  }
+}
 @media (max-width: 520px) {
   .auth-page {
     padding-top: 12px;
+    background-position:
+      right -26px top 133px,
+      0 0,
+      0 0,
+      0 0;
   }
   .auth-layout {
     margin-top: 12px;
@@ -198,8 +305,11 @@
   .auth-brand {
     margin-bottom: 20px;
   }
-  .auth-card {
-    padding: 26px 22px;
+  .auth-card h1 {
+    max-width: 170px;
+  }
+  .auth-description {
+    max-width: 175px;
   }
   .auth-form {
     margin-top: 26px;
@@ -207,6 +317,18 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
+  .auth-brand,
+  .auth-eyebrow,
+  .auth-card h1,
+  .auth-intro,
+  .auth-form .auth-field,
+  .auth-feedback,
+  .auth-submit,
+  .auth-footer,
+  .auth-note,
+  .auth-sidekick {
+    animation: none;
+  }
   .auth-submit {
     transition: none;
   }

@@ -1,5 +1,7 @@
+import { useLayoutEffect } from 'react'
 import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { AuthPage } from '../features/auth/AuthPage'
+import { BrandLogo } from '../shared/ui/BrandLogo'
 
 const modules = [
   {
@@ -26,7 +28,7 @@ const modules = [
 
 function Home() {
   return (
-    <main className="container">
+    <main className="container page-enter">
       <p className="eyebrow">Tu espacio cotidiano</p>
       <h1>Un día a la vez, todo en un lugar.</h1>
       <p className="intro">
@@ -53,7 +55,7 @@ function ModulePage({
   description: string
 }) {
   return (
-    <main className="container">
+    <main className="container page-enter">
       <Link to="/inicio">← Inicio</Link>
       <p className="eyebrow">AloneTogether</p>
       <h1>{title}</h1>
@@ -67,13 +69,19 @@ function ModulePage({
 }
 
 export function App() {
-  const isAuthPage = ['/', '/acceso'].includes(useLocation().pathname)
+  const location = useLocation()
+  const isAuthPage = ['/', '/acceso'].includes(location.pathname)
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location.key])
+
   return (
     <>
       {!isAuthPage && (
         <header className="site-header">
           <Link className="brand" to="/inicio">
-            alone together
+            <BrandLogo className="brand-logo" />
           </Link>
           <nav aria-label="Navegación principal">
             <Link to="/inicio">Inicio</Link>
@@ -81,8 +89,8 @@ export function App() {
           </nav>
         </header>
       )}
-      <Routes>
-        <Route path="/" element={<Navigate to="/acceso" replace />} />
+      <Routes location={location} key={location.key}>
+        <Route path="/" element={<AuthPage />} />
         <Route path="/inicio" element={<Home />} />
         <Route path="/acceso" element={<AuthPage />} />
         {modules.map((module) => (

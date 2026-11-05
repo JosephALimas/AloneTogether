@@ -1,15 +1,24 @@
 project_id = "alonetogether"
 
 [api]
-port = 54321
+port = 55321
 
 [db]
-port = 54322
+port = 55322
+shadow_port = 55320
 major_version = 17
 
 [studio]
-port = 54323
+port = 55323
 
 [auth]
 site_url = "http://localhost:5173"
 additional_redirect_urls = ["http://127.0.0.1:5173"]
+
+[auth.email]
+enable_confirmations = true
+
+[local_smtp]
+port = 55324
+smtp_port = 55325
+pop3_port = 55326

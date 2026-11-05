@@ -1,6 +1,8 @@
 import { FormEvent, useEffect, useId, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../../services/supabase'
+import { BrandLogo } from '../../shared/ui/BrandLogo'
+import blueLoney from '../../../graphics/Loney asoma junto al círculo azul.png'
 import './AuthPage.css'
 
 type Mode = 'login' | 'signup' | 'recovery' | 'reset'
@@ -139,13 +141,14 @@ export function AuthPage() {
 
   return (
     <main className="auth-page">
-      <div className="auth-layout">
-        <div className="auth-brand">alone together</div>
+      <div className="auth-layout" key={`layout-${mode}`}>
+        <BrandLogo className="auth-brand" />
         <section className="auth-card" aria-labelledby="auth-title">
-          <div className="auth-accent" aria-hidden="true" />
           <p className="auth-eyebrow">TU ESPACIO</p>
           <h1 id="auth-title">{copy[mode][0]}</h1>
-          <p className="auth-description">{copy[mode][1]}</p>
+          <div className="auth-intro">
+            <p className="auth-description">{copy[mode][1]}</p>
+          </div>
           <form onSubmit={submit} className="auth-form">
             {mode !== 'reset' && (
               <div className="auth-field">
@@ -256,6 +259,12 @@ export function AuthPage() {
           Un lugar para organizar tu día, a tu manera.
         </p>
       </div>
+      <img
+        key={`sidekick-${mode}`}
+        className="auth-sidekick"
+        src={blueLoney}
+        alt="Loney asoma junto a un círculo azul"
+      />
     </main>
   )
 }
