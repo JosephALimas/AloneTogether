@@ -1,7 +1,6 @@
 # AloneTogether — documento de arquitectura inicial
 
 **Estado:** propuesta para iniciar un proyecto nuevo.  
-**Referencia técnica:** la estructura de `MusclesTrainingHelper` revisada el 4 de noviembre de 2026.  
 **Objetivo:** ayudar a una persona que vive sola a organizar tareas cotidianas en un solo lugar, sin obligarla a configurar todos los módulos desde el primer día.
 
 ## 1. Producto y alcance
