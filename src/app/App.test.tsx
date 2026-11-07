@@ -15,19 +15,22 @@ describe('app routes', () => {
   it('renders only access content at /acceso', () => {
     const html = renderRoute('/acceso')
     expect(html).toContain('Qué gusto verte de nuevo')
-    expect(html).not.toContain('Tu espacio cotidiano')
+    expect(html).not.toContain('Qué gusto tenerte aquí.')
     expect(html).not.toContain('Un día a la vez')
   })
 
   it('opens directly on access content at /', () => {
     const html = renderRoute('/')
     expect(html).toContain('Qué gusto verte de nuevo')
-    expect(html).not.toContain('Tu espacio cotidiano')
+    expect(html).not.toContain('Qué gusto tenerte aquí.')
   })
 
   it('renders the module home at /inicio', () => {
     const html = renderRoute('/inicio')
-    expect(html).toContain('Tu espacio cotidiano')
+    expect(html).toContain('Qué gusto tenerte aquí.')
+    expect(html).toContain('Menú semanal')
+    expect(html).toContain('Presupuesto')
+    expect(html).toContain('Gestión de gastos')
     expect(html).not.toContain('Qué gusto verte de nuevo')
   })
 })

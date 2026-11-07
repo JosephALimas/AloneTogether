@@ -2,50 +2,50 @@ import { useLayoutEffect } from 'react'
 import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { AuthPage } from '../features/auth/AuthPage'
 import { BrandLogo } from '../shared/ui/BrandLogo'
+import { HomePage } from './HomePage'
 
-const modules = [
+const destinations = [
+  {
+    path: 'menu-semanal',
+    title: 'Menú semanal',
+    description: 'Aquí podrás organizar tus comidas de la semana.',
+  },
+  {
+    path: 'presupuesto',
+    title: 'Presupuesto',
+    description: 'Aquí podrás planear y revisar tus límites mensuales.',
+  },
+  {
+    path: 'gastos',
+    title: 'Gestión de gastos',
+    description: 'Aquí podrás registrar y consultar tus movimientos.',
+  },
+  {
+    path: 'perfil',
+    title: 'Perfil',
+    description: 'Aquí podrás consultar y editar tus datos personales.',
+  },
+  {
+    path: 'configuracion',
+    title: 'Configuración',
+    description: 'Aquí podrás ajustar tus preferencias.',
+  },
   {
     path: 'recetas',
     title: 'Recetas',
-    description: 'Cocina algo práctico con lo que tienes.',
+    description: 'Aquí podrás explorar recetas.',
   },
   {
     path: 'ciudad',
     title: 'Ciudad',
-    description: 'Encuentra lugares útiles cerca de ti.',
-  },
-  {
-    path: 'gastos',
-    title: 'Gastos',
-    description: 'Registra y revisa tus movimientos.',
+    description: 'Aquí podrás encontrar lugares útiles.',
   },
   {
     path: 'presupuestos',
     title: 'Presupuestos',
-    description: 'Planea tus límites mensuales.',
+    description: 'Aquí podrás consultar tus presupuestos.',
   },
 ] as const
-
-function Home() {
-  return (
-    <main className="container page-enter">
-      <p className="eyebrow">Tu espacio cotidiano</p>
-      <h1>Un día a la vez, todo en un lugar.</h1>
-      <p className="intro">
-        Elige por dónde empezar. Cada herramienta funciona a tu ritmo.
-      </p>
-      <div className="grid">
-        {modules.map((module) => (
-          <Link className="card" to={`/${module.path}`} key={module.path}>
-            <h2>{module.title}</h2>
-            <p>{module.description}</p>
-            <span>Explorar →</span>
-          </Link>
-        ))}
-      </div>
-    </main>
-  )
-}
 
 function ModulePage({
   title,
@@ -70,7 +70,7 @@ function ModulePage({
 
 export function App() {
   const location = useLocation()
-  const isAuthPage = ['/', '/acceso'].includes(location.pathname)
+  const isFullPage = ['/', '/acceso', '/inicio'].includes(location.pathname)
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
@@ -78,22 +78,21 @@ export function App() {
 
   return (
     <>
-      {!isAuthPage && (
+      {!isFullPage && (
         <header className="site-header">
           <Link className="brand" to="/inicio">
             <BrandLogo className="brand-logo" />
           </Link>
           <nav aria-label="Navegación principal">
             <Link to="/inicio">Inicio</Link>
-            <Link to="/acceso">Acceso</Link>
           </nav>
         </header>
       )}
       <Routes location={location} key={location.key}>
         <Route path="/" element={<AuthPage />} />
-        <Route path="/inicio" element={<Home />} />
+        <Route path="/inicio" element={<HomePage />} />
         <Route path="/acceso" element={<AuthPage />} />
-        {modules.map((module) => (
+        {destinations.map((module) => (
           <Route
             key={module.path}
             path={`/${module.path}`}
