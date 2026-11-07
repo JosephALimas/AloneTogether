@@ -71,3 +71,20 @@ npm run smoke:auth
 ## Siguientes pasos
 
 Completar onboarding y estado de sesión; agregar pruebas de aislamiento RLS; definir la primera ciudad y el proveedor de mapas antes de integrar lugares. La estructura `features/` crece por dominio a medida que se implementan las experiencias.
+
+## Recetario
+
+El módulo `/recetas` incluye un catálogo inicial de cuatro recetas con textos
+originales del proyecto, búsqueda por nombre o ingrediente, favoritas y recetas
+propias. Cada detalle muestra tiempo, porciones, cantidades de ingredientes,
+materiales y utensilios, y pasos ordenados. El formulario `/recetas/nueva` acepta
+un ingrediente, utensilio o paso por línea.
+
+Las recetas propias y favoritas se conservan en `localStorage` de este navegador
+con la clave versionada `alonetogether.recipes.v1`. No se guardan en Supabase ni
+se separan por cuenta: no uses este almacenamiento para información privada en
+un navegador compartido. Si el navegador impide guardar, el formulario mantiene
+su contenido y muestra el error. Una colección ilegible no se sobrescribe.
+Los ingredientes marcados en el detalle solo se mantienen mientras esa vista
+permanece abierta. La sincronización entre dispositivos queda para una etapa
+posterior.

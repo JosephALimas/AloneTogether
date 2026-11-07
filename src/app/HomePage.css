@@ -82,7 +82,7 @@
 }
 .home-module-nav {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
   margin-top: 20px;
 }
@@ -228,5 +228,14 @@
   .home-account-nav a,
   .home-module-link {
     transition: none;
+  }
+}
+
+.home-module-link--orange .home-module-dot {
+  background: var(--orange);
+}
+@media (min-width: 651px) and (max-width: 1000px) {
+  .home-module-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

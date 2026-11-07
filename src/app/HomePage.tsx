@@ -4,6 +4,7 @@ import monogram from '../../graphics/Monograma AT en verde azulado.png'
 import './HomePage.css'
 
 const sections = [
+  { path: '/recetas', label: 'Recetas', tint: 'orange' },
   { path: '/menu-semanal', label: 'Menú semanal', tint: 'blue' },
   { path: '/presupuesto', label: 'Presupuesto', tint: 'yellow' },
   { path: '/gastos', label: 'Gestión de gastos', tint: 'green' },
@@ -95,8 +96,9 @@ export function HomePage() {
           <p className="home-kicker">TE DAMOS LA BIENVENIDA</p>
           <h1 id="welcome-title">Qué gusto tenerte aquí.</h1>
           <p>
-            Aquí podrás organizar tu menú semanal, consultar tu presupuesto y
-            llevar el registro de tus gastos. Elige por dónde empezar.
+            Aquí podrás descubrir recetas, organizar tu menú semanal, consultar
+            tu presupuesto y llevar el registro de tus gastos. Elige por dónde
+            empezar.
           </p>
         </section>
       </div>

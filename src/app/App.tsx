@@ -4,6 +4,7 @@ import { AuthPage } from '../features/auth/AuthPage'
 import { BrandLogo } from '../shared/ui/BrandLogo'
 import { HomePage } from './HomePage'
 import { BudgetPage } from '../features/budgets/BudgetPage'
+import { RecipesPage } from '../features/recipes/RecipesPage'
 
 const destinations = [
   {
@@ -75,7 +76,7 @@ export function App() {
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
-  }, [location.key])
+  }, [location.pathname])
 
   return (
     <>
@@ -89,10 +90,11 @@ export function App() {
           </nav>
         </header>
       )}
-      <Routes location={location} key={location.key}>
+      <Routes location={location} key={location.pathname}>
         <Route path="/" element={<AuthPage />} />
         <Route path="/inicio" element={<HomePage />} />
         <Route path="/acceso" element={<AuthPage />} />
+        <Route path="/recetas/*" element={<RecipesPage />} />
         <Route path="/presupuesto" element={<BudgetPage />} />
         <Route
           path="/presupuestos"
@@ -101,7 +103,9 @@ export function App() {
         {destinations
           .filter(
             (module) =>
-              module.path !== 'presupuesto' && module.path !== 'presupuestos',
+              module.path !== 'presupuesto' &&
+              module.path !== 'presupuestos' &&
+              module.path !== 'recetas',
           )
           .map((module) => (
             <Route
