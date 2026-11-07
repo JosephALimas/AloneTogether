@@ -3,6 +3,7 @@ import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { AuthPage } from '../features/auth/AuthPage'
 import { BrandLogo } from '../shared/ui/BrandLogo'
 import { HomePage } from './HomePage'
+import { BudgetPage } from '../features/budgets/BudgetPage'
 
 const destinations = [
   {
@@ -92,18 +93,28 @@ export function App() {
         <Route path="/" element={<AuthPage />} />
         <Route path="/inicio" element={<HomePage />} />
         <Route path="/acceso" element={<AuthPage />} />
-        {destinations.map((module) => (
-          <Route
-            key={module.path}
-            path={`/${module.path}`}
-            element={
-              <ModulePage
-                title={module.title}
-                description={module.description}
-              />
-            }
-          />
-        ))}
+        <Route path="/presupuesto" element={<BudgetPage />} />
+        <Route
+          path="/presupuestos"
+          element={<Navigate to="/presupuesto" replace />}
+        />
+        {destinations
+          .filter(
+            (module) =>
+              module.path !== 'presupuesto' && module.path !== 'presupuestos',
+          )
+          .map((module) => (
+            <Route
+              key={module.path}
+              path={`/${module.path}`}
+              element={
+                <ModulePage
+                  title={module.title}
+                  description={module.description}
+                />
+              }
+            />
+          ))}
         <Route path="*" element={<Navigate to="/acceso" replace />} />
       </Routes>
     </>
